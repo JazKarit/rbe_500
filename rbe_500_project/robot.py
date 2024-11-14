@@ -60,3 +60,15 @@ class Robot:
     def forward(self,q1,q2,q3,q4):
         # Multiply our A matrices to find the transform from end effector frame (frame 3) to base frame (frame 0)
         H_3 = self.A_1(q1) @ self.A_2(q2) @ self.A_3(q3) @ self.A_3(q4)
+
+    def inverse(self,x,y,z,theta):
+        q1 = theta
+
+        z_tick = np.sin(theta) * self.l4
+        x_double_tick = np.cos(theta) * self.l4
+        x_tick = np.sqrt(x**2 + y**2) - x_double_tick
+
+        a = np.sqrt(x_tick**2 + z_tick**2)
+
+        
+
