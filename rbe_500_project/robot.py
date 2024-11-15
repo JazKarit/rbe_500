@@ -62,13 +62,26 @@ class Robot:
         H_3 = self.A_1(q1) @ self.A_2(q2) @ self.A_3(q3) @ self.A_3(q4)
 
     def inverse(self,x,y,z,theta):
-        q1 = theta
+        z_double_tick = np.sin(theta) * self.l4
+        z_tick = z + z_double_tick - self.l0l1
 
-        z_tick = np.sin(theta) * self.l4
         x_double_tick = np.cos(theta) * self.l4
         x_tick = np.sqrt(x**2 + y**2) - x_double_tick
 
         a = np.sqrt(x_tick**2 + z_tick**2)
 
         
+        cos_q3_tick = (self.l3**2 + self.l2**2  - a**2) / (2*self.l3*self.l4)
+
+        # todo use atan2?
+        q3_tick =  np.arccos(cos_q3_tick)
+
+        M = self.l3/a * np.sin(q3_tick)
+        b = np.arctan2(z_tick,x_tick)
+
+        q1 = np.arctan2(y,x)
+        q2 = M + b - np.pi / 2
+        q3 = q3_tick-(np.pi/2+self.beta)
+        q4 = -theta
+
 
