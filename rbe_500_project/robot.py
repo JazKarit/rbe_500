@@ -94,7 +94,7 @@ class Robot:
         q2 = q2_tick - (math.pi/2 + self.beta)
         q3 = q3_tick - (math.pi/2 + gamma)
         
-        q4 = ((np.pi - q2_tick) + (np.pi - q3_tick)) - np.pi/2
+        q4 = ((np.pi - q2_tick) + (np.pi - q3_tick)) - np.pi/2 - theta
 
         return q1, q2, q3, q4 
     
