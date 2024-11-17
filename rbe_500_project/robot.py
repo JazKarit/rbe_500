@@ -1,6 +1,5 @@
 import rclpy
 from rclpy.node import Node
-
 from std_msgs.msg import Float32MultiArray
 import math
 import numpy as np
@@ -60,10 +59,10 @@ class Robot:
     
     def forward(self,q1,q2,q3,q4):
         # Multiply our A matrices to find the transform from end effector frame (frame 3) to base frame (frame 0)
-        print(np.round((self.A_1(q1) @ self.A_2(q2)),1))
+       
         
-        H_3 = self.A_1(q1) @ self.A_2(q2) @ self.A_3(q3) @ self.A_4(q4)
-        return H_3
+        H_4 = self.A_1(q1) @ self.A_2(q2) @ self.A_3(q3) @ self.A_4(q4)
+        return H_4
 
     def inverse(self,x,y,z,theta):
         z_double_tick = math.sin(theta) * self.l4
@@ -98,10 +97,7 @@ class Robot:
 
         return q1, q2, q3, q4 
     
-robot = Robot()
 
-print(np.round(robot.forward(0,0,0,0),2))
 
-print(np.round(np.multiply(robot.inverse(281.4,0,224.33,0),180/np.pi),2) )
 
 

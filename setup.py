@@ -19,7 +19,7 @@ setup(
     license='Apache-2.0',
     tests_require=['pytest'],
     entry_points={
-        'console_scripts': [
+        'console_scripts': [ 'forward = rbe_500_project.forward_kinematics:main'
         ],
     },
 )
